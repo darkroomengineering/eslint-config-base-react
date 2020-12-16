@@ -44,7 +44,7 @@ make sure you have the following setting enabled in VSCode:
 
 ```js
 "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+	"source.fixAll.eslint": true
 },
 ```
 
