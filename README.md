@@ -7,7 +7,9 @@ This package includes the shareable ESLint configuration used by [Studio Freight
 Install this package:
 
 `npm install --save-dev @studio-freight/eslint-config-base-react`
+
 or
+
 `yarn add --dev @studio-freight/eslint-config-base-react`
 
 Then create a file named `.eslintrc` with following contents in the root folder of your project:
