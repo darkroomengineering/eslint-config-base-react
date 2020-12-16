@@ -59,6 +59,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-        run: git push
+      - run: git push
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
