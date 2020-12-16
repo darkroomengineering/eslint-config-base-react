@@ -44,8 +44,8 @@ make sure you have the following setting enabled in VSCode:
 
 ```js
 "editor.codeActionsOnSave": {
-	"source.fixAll.eslint": true
-},
+	"source.fixAll": true
+}
 ```
 
 since prettier is already included here, you don't need to run any prettifying tools on your end, eslint already does that for you, you're welcome!
