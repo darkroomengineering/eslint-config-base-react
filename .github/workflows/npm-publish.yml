@@ -10,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: npm ci
-      - run: npm test
+      - run: npm version ${{ github.event.release.tag_name }}
+      - run: git config --global user.name "Franco CD bot"
+      - run: git config --global user.email "franco@studiofreight.com"
 
   publish-npm:
     needs: build
@@ -44,5 +48,17 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
       - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  
+  push:
+    needs: [publish-npm, publish-gpr]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        run: git push
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
