@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config-base-react",
+  "name": "@studio-freight/eslint-config-base-react",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/studio-freight/eslint-config-base-react.git",
