@@ -58,6 +58,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: git config --global user.name "Franco CD bot"
+      - run: git config --global user.email "franco@studiofreight.com"
+      - run: npm version ${{ github.event.release.tag_name }}
       - run: git push
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
