@@ -7,37 +7,43 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
 
-    # Run on latest version of ubuntu
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-gpr:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # "ref" specifies the branch to check out.
-        # "github.event.release.target_commitish" is a global variable and specifies the branch the release targeted
-        ref: ${{ github.event.release.target_commitish }}
-    # install Node.js
-    - name: Use Node.js 12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-        # Specifies the registry, this field is required!
-        registry-url: https://registry.npmjs.org/
-    # clean install of your projects' deps. We use "npm ci" to avoid package lock changes
-    - run: npm ci
-    # set up git since we will later push to the repo
-    - run: git config --global user.name "Franco but it's a bot"
-    - run: git config --global user.email "franco@studiofreight.com"
-    # upgrade npm version in package.json to the tag used in the release.
-    - run: npm version ${{ github.event.release.tag_name }}
-    # publish to NPM
-    - run: npm publish
-      env:
-        # Use a token to publish to NPM.
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    # push the version changes to GitHub
-    - run: git push
-      env:
-        # The secret is passed automatically. Nothing to configure.
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
