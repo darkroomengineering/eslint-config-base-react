@@ -1,8 +1,11 @@
 module.exports = {
+  parser: "babel-eslint",
   extends: [
-    "react-app", // or whatever you chose as your base config
+    "standard",
+    "standard-jsx",
+    "standard-react", // or whatever you chose as your base config
     "plugin:prettier/recommended", // this will stop Prettier and ESLint from fighting over fixes
-    "prettier/react" // optionally include this if you use React
+    "prettier/react", // optionally include this if you use React
   ],
   plugins: ["prettier"],
   ignorePatterns: ["node_modules", ".next", ".now"],
@@ -18,8 +21,8 @@ module.exports = {
         singleQuote: false,
         trailingComma: "none",
         jsxBracketSameLine: false,
-        semi: false
-      }
-    ]
-  }
+        semi: false,
+      },
+    ],
+  },
 }

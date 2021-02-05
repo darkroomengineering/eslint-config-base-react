@@ -24,7 +24,7 @@ you're gucci.
 
 ## Includes
 
-### [React's official base eslint rules](https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app#usage-outside-of-create-react-app)
+### [ESLINT Standard React](https://github.com/standard/eslint-config-standard-react)
 
 ### Prettier settings:
 
