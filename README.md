@@ -16,7 +16,7 @@ Then create a file named `.eslintrc` with following contents in the root folder 
 
 ```js
 {
-	"extends":  "base-react"
+	"extends":  "@studio-freight/eslint-config-base-react"
 }
 ```
 
