@@ -7,6 +7,9 @@ module.exports = {
     "plugin:prettier/recommended", // this will stop Prettier and ESLint from fighting over fixes
     "prettier/react", // optionally include this if you use React
   ],
+  "env": {
+    "browser": true
+  },
   plugins: ["prettier"],
   ignorePatterns: ["node_modules", ".next", ".now"],
   rules: {
@@ -24,5 +27,8 @@ module.exports = {
         semi: false,
       },
     ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off"
   },
 }
