@@ -5,7 +5,7 @@ module.exports = {
     "standard-jsx",
     "standard-react", // or whatever you chose as your base config
     "plugin:prettier/recommended", // this will stop Prettier and ESLint from fighting over fixes
-    "prettier/react", // optionally include this if you use React
+    "prettier",
   ],
   "env": {
     "browser": true
